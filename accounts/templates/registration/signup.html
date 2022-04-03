@@ -1,8 +1,16 @@
-{% extends 'patient/consultation.html'%}
+{% extends 'patient/base.html'%}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
+
+<div></div>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
 <div class="content-wrapper">
 
   <div class="container-fluid">
@@ -28,7 +36,7 @@
       {{ form|crispy }}
 
 
-    <input type="submit"  class="btn btn-purple float-right" value="Signup" />
+    <input type="submit"  class="btn btn-primary p-2 pl-4 pr-4 float-right" value="Signup" />
 
   </form>
 
@@ -47,8 +55,5 @@
 </div>
 
 </div>
-
-
-
 
 {% endblock %}

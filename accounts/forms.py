@@ -6,9 +6,14 @@ from .models import Profile
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email','is_staff', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email','is_staff','is_superuser', 'password1', 'password2']
         labels={
-            'is_staff':'manager'
+            'username' : 'Nom de l\'Utilisateur',
+            'first_name' : 'Nom ',
+            'last_name' : 'Prenom',
+            # 'telephone' : 'Numéro Téléphone',
+            'is_superuser': 'Medecin',
+            'is_staff': 'Technicien'
         }
 
 class UserForm(forms.ModelForm):

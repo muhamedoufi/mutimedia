@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Projet Image et Multimédia</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.ico' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Medicio - v4.7.0
+  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i> Lumdi - Samedi, 8:00 jous'qua 22:00
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> Appeler Nous maintenant  +22226162898
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a href="#" class="logo me-auto "><h6><img src="{% static 'img/3team.ico' %}" alt="3team"> <span> Projet Image et Multimédia</span></h6></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+
+      <nav id="navbar" class="navbar order-last order-lg-2">
+        <ul>
+          <li><a class="nav-link scrollto " href="{%url 'patient:home' %}">Accueil</a></li>
+          {%if request.user.is_authenticated == False%}
+          <li><a class="nav-link scrollto" href="{%url 'accounts:login' %}">Se Connecter </a></li>
+          {%endif%}
+          <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+            {% if request.user.is_superuser and request.user.is_staff %}
+              <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
+              <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li>
+              <!-- <li><a href="{%url 'patient:patientform' %}">Ajouter des Patients </a></li> -->
+              <li><a href="{%url 'accounts:signup' %}">Ajouter des utilisateur </a></li>
+              <li><a href="#">Faire une Consultation </a></li>
+              <li><a href="#">Analyser une image </a></li>
+              <li><a href="#">Rediger un Rapport Vocal </a></li>
+              <li><a href="{%url 'accounts:profile' %}">Profile</a></li>
+              <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
+            {% elif request.user.is_superuser == False and request.user.is_staff %}
+              <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li>
+              <li><a href="{%url 'accounts:profile' %}">Profile </a></li>
+              <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
+            {% elif request.user.is_authenticated %}
+              <li><a href="#">Transformer Vocal en Rapport Numérique </a></li>
+              <li><a href="{%url 'patient:patientform' %}">Ajouter des Patients </a></li>
+              <li><a href="{%url 'accounts:profile' %}">Profile</a></li>
+              <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
+            {%else%}
+            <li><a class="nav-link scrollto" href="{%url 'patient:contact' %}">Contact</a></li>
+            {%endif%}
+              
+              
+            </ul>
+          </li> 
+          <!-- end the menu list -->
+          <!-- beging the Listes list  -->
+
+          <li class="dropdown"><a href="#"><span>Les Listes </span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+            {% if request.user.is_superuser and request.user.is_staff %}
+              <li><a href="{%url 'accounts:table_users' %}"> Liste des utilisateur</a></li>
+              <li><a href="#"> Liste des Rapport Vocal</a></li>
+              <li><a href="#"> Liste des Consultation </a></li>
+              <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
+              <li><a href="#"> Liste des Rapport Numérique </a></li>
+              <li><a href="{%url 'patient:listPatient' %}"> Liste des Patients</a></li>
+            {% elif request.user.is_superuser == False and request.user.is_staff %}
+              <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
+              <li><a href="{%url 'patient:listPatient' %}">  Liste des Patients</a></li>
+            {% elif request.user.is_authenticated %}
+              <li><a href="#"> Liste des Rapport Vocal</a></li>
+              <li><a href="#"> Liste des Consultation </a></li>
+              <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
+              <li><a href="#"> Liste des Rapport Numérique </a></li>
+              <li><a href="{%url 'patient:listPatient' %}"> Liste des Patients</a></li>
+          
+            {%else%}
+            
+            {%endif%}
+              
+              
+            </ul>
+          </li>
+
+          <!-- end the Listes list -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  
+  {% block content%}
+  {% endblock content%}
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

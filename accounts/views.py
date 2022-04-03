@@ -77,7 +77,7 @@ def profile_edit(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('stock:home')
+    return redirect('patient:home')
 
 
     
@@ -95,7 +95,7 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('stock:home')
+            return redirect('patient:home')
         else:
             messages.info(request, 'Username OR password is incorrect')
 

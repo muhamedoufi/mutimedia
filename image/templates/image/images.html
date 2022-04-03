@@ -1,8 +1,64 @@
-<html>
-    <head>
-        <title>hello </title>
-    </head>
-    <body>
-        <h2>hello Brother you can get your images </h2>
-    </body>
-</html>
+{% extends 'patient/base.html'%}
+{% load static %}
+{% block content %}}
+
+{% load crispy_forms_tags %}
+
+<br><br><br><br><br><br>
+<div class="content-wrapper">
+
+    <div class="container-fluid">
+        <!-- <H2> HELLO </H2> -->
+        <!--page title-->
+        <div class="page-title mb-4 d-flex align-items-center">
+            <div class="mr-auto">
+                <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES IMAGES</h4>
+                <nav aria-label="breadcrumb" class="d-inline-block ">
+                    <ol class="breadcrumb p-0">
+                        <li class="breadcrumb-item"><a href="{% url 'patient:home' %}">Accueil</a></li>
+                        {% if request.user.is_superuser == False and request.user.is_staff %}
+                        <li class="breadcrumb-item"><a href="{% url 'patient:patientform'%}">Ajouter Une Image </a></li>
+                        {% endif %}
+                        <li class="breadcrumb-item active" aria-current="page">List Des Images</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!--/page title-->
+
+        {% for image in listimage %}
+        <div class="row">
+            <div class="col-xl-4 col-md-6 profile-info-position">
+                <div class="card card-shadow mb-4 ">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <div class="mt-4 mb-3">
+                                   {% if messages %}
+                                        {% for message in messages %}
+                                        <div class="alert alert-{{message.tags}}">
+                                            {{message}}
+                                        </div>
+                                        {% endfor %}
+                                    {% endif %}  
+                                <img class="rounded-circle"  src= "{{image.img.url}}"  alt='{{image.patient}}' width="85" />
+                            </div>
+                            <h5 class="text-uppercase mb-0">{{image.patient}}</h5>
+                            <p class="text-muted mb-0">{{image.description}}</p>
+                            <p class="text-muted mb-0">{{image.technicien}}</p>
+                            <p class="text-muted mb-0">{{image.type}}</p>
+                          
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    
+</div>
+
+
+{% endblock content %}

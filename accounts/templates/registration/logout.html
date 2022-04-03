@@ -1,0 +1,15 @@
+{% extends 'patient/base.html'%}
+{% load static %}
+{% block content %}
+
+<br><br> <br><br> <br><br> 
+<section id="hero">
+    <div class="container-fluid">
+        <legend class="border-bottom pb-1 mb-3"> tu a Déconnecté </legend>
+        <button class="btn btn-primary active"><a href="{%url 'patient:home' %}">cliquer ici pour aller au page d'Accueil</a>
+    </div>
+</section>
+
+
+
+{% endblock content %}
