@@ -56,7 +56,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <a href="#" class="logo me-auto "><h6><img src="{% static 'img/3team.ico' %}" alt="3team"> <span> Projet Image et Multimédia</span></h6></a>
+      <a href="#" class="logo me-auto "><h6><img src="{% static 'img/3team.ico' %}" alt="3team"> <span> Projet Image et Multimédia pour l'image medicale</span></h6></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -69,8 +69,8 @@
           <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
             {% if request.user.is_superuser and request.user.is_staff %}
-              <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
-              <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li>
+              <!-- <li><a href="{%url 'image:images' %}"> Liste des Images</a></li> -->
+              <!-- <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li> -->
               <!-- <li><a href="{%url 'patient:patientform' %}">Ajouter des Patients </a></li> -->
               <li><a href="{%url 'accounts:signup' %}">Ajouter des utilisateur </a></li>
               <li><a href="#">Faire une Consultation </a></li>
