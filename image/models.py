@@ -25,3 +25,4 @@ class Image(models.Model):
             output_size = (300, 300)
             image.thumbnail(output_size)
             image.save(self.img.path)
+   

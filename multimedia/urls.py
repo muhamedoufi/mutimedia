@@ -25,3 +25,4 @@ urlpatterns = [
     path('', include('image.urls', namespace='image')),
     path('', include('patient.urls', namespace='patient')),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
