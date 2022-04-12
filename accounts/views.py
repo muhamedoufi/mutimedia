@@ -15,7 +15,7 @@ from django.contrib.auth.models import Group
 
 # @unauthenticated_user
 
-@admin_and_manager_only
+@admin_only
 def signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)

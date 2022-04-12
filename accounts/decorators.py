@@ -48,13 +48,15 @@ def admin_only(view_func):
         group = None
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
-
-        if group == 'shopkipper' or 'manager':
-            return redirect('accounts/logout')
-        elif group == 'admin':
+        print("image")
+        if group == 'medecins' or group == 'secretaires' or group == 'techniciens':
+			
+            return redirect('/accounts/logout')
+        else: 
+			
             return view_func(request, *args, **kwargs)
-        else:
-            return # <- return response here (possibly a redirect to login page?)
+        # else:
+        #     return # <- return response here (possibly a redirect to login page?)
 
     return wrapper_function
 
