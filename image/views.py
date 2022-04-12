@@ -10,7 +10,7 @@ from django.contrib import messages
 
 def imageform(request):
     if request.method == 'POST':
-        patient_Form = NewImage(request.POST)
+        patient_Form = NewImage(request.POST, request.FILES)
         if patient_Form.is_valid():
             patient_Form= patient_Form.save(commit=False)
             patient_Form.technicien = User.objects.get(id=request.user.id)
