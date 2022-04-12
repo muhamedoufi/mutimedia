@@ -14,7 +14,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
-    image = models.ImageField(default='default.jpg',null=True)
+    image = models.ImageField(default='default.png',null=True)
     manager = models.CharField(max_length=50,null=True)
     def __str__(self):
         return str(self.user)
