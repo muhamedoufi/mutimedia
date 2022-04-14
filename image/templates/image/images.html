@@ -4,10 +4,10 @@
 
 {% load crispy_forms_tags %}
 
-<br><br><br><br><br><br>
-<div class="content-wrapper">
 
-    <div class="container-fluid">
+
+
+    <div class="container-fluid"style="margin-top:10%">
         <!-- <H2> HELLO </H2> -->
         <!--page title-->
         <div class="page-title mb-4 d-flex align-items-center">
@@ -19,14 +19,48 @@
                         {% if request.user.is_superuser == False and request.user.is_staff %}
                         <li class="breadcrumb-item"><a href="{% url 'patient:patientform'%}">Ajouter Une Image </a></li>
                         {% endif %}
-                        <li class="breadcrumb-item active" aria-current="page">List Des Images</li>
+                        <li class="breadcrumb-item active" aria-current="page">Liste Des Images</li>
                     </ol>
                 </nav>
             </div>
-        </div>
+        </div> 
         <!--/page title-->
+        <div class="row m-auto">
+            {% for image in listimage %}
+            <div class="col-lg-3 col-md-6 mb-1">
+                <div class="card">
+                    <img class="card-img-top" src="{{image.img.url}}"/>
+                    <div class="card-block">
+                        <div>
+                            <div class="row">
+                                <div class="col-md">le patient:<h6 class="text-uppercase">{{image.patient.nom}}</h6></div>
+                                <div class="col-md">Technicien: {{image.technicien}}</div>
+                                <div class="col-md">type: {{image.type}}</div>
+                            </div>
+                        </div> 
+                        <p class="text-muted m-2 card-subtitle">{{image.description}}</p>
 
-        {% for image in listimage %}
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-sm btn-primary">Modifier</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-sm btn-danger">Modifier</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                {% comment %} </div> {% endcomment %}
+            </div>
+           
+            {%endfor%} 
+        </div>
+       
+        {% comment %} {% for image in listimage %}
         <div class="row">
             <div class="col-xl-4 col-md-6 profile-info-position">
                 <div class="card card-shadow mb-4 ">
@@ -54,11 +88,11 @@
             </div>
         </div>
         {% endfor %}
-
+ {% endcomment %}
 
     </div>
     
-</div>
+
 
 
 {% endblock content %}

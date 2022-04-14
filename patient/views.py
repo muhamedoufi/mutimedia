@@ -4,7 +4,7 @@ from django.contrib import messages
 from patient.forms import NewPatient
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+from .decorators import *
 from patient.models import Patient
 
 # Create your views here.
@@ -34,12 +34,14 @@ def patientform(request):
 
         }
         return render(request,'patient/patientform.html',context)
-
+# @secretaire_only
 def listPatient(request):
+    print(request.user)
+    print(request.user.groups.all()[0].name)
     context={
 
         'title': 'la Liste des Patient' ,
-        'listPatient': Patient.objects.all(),
+        'listPatient': Patient.objects.filter(secretaire=request.user),
 
     }
     return render(request,'patient/listPatient.html',context)

@@ -20,7 +20,7 @@
 
         <div class="modal-body">
 
-                                <div class="custom-title">Ajout un utilisateur</div><br>
+                                <div class="custom-title">Ajouter un utilisateur</div><br>
 
                              {% if messages %}
                              {% for message in messages %}
@@ -33,10 +33,23 @@
 
   <form method="post" >
     {% csrf_token %}
-      {{ form|crispy }}
+    
+      {{ form.username|as_crispy_field }}
+      {{ form.first_name|as_crispy_field }}
+      {{ form.last_name|as_crispy_field }}
+      {{ form.is_superuser|as_crispy_field }}
+      {{ form.is_staff|as_crispy_field }}
+      <div id="div_id_is_secretaire" class="form-check">           
+        <input type="checkbox" name="is_secretaire" class="checkboxinput form-check-input" id="id_is_secretaire" required=true>
+    
+        <label for="id_is_secretaire" class="form-check-label">Secretaire</label>
+        <small id="hint_id_is_staff" class="form-text text-muted">Designates whether the user when is Secretaire</small>
+      </div>
+      {{ form.password1|as_crispy_field }}
+      {{ form.password2|as_crispy_field }}
+   
 
-
-    <input type="submit"  class="btn btn-primary p-2 pl-4 pr-4 float-right" value="Signup" />
+    <input type="submit"  class="btn btn-primary p-2 pl-4 pr-4 float-right" value="ADD" />
 
   </form>
 
@@ -53,5 +66,42 @@
 <!--  </div>-->
 </div>
 </div>
-
+<script>
+  function getCheckboxes() {
+          return document.querySelectorAll('input[type=checkbox]');
+      }
+  
+      function uncheckAllCheckboxes() {
+          var checkboxes = getCheckboxes();
+  
+          for (var i = 0, length = checkboxes.length; i < length; i++) {
+              checkboxes[i].checked = false;
+              
+              // return false;
+          }
+          // return true;
+      }
+  
+      function manageClick() {
+          uncheckAllCheckboxes();
+  
+          this.checked = true;
+          this.getAttribute("required")=false
+          
+      return true;
+      }
+  
+      function init() {
+          var checkboxes = getCheckboxes();
+  
+          for (var i = 0, length = checkboxes.length; i < length; i++) {
+              checkboxes[i].addEventListener('click', manageClick);
+          }
+      }
+  
+      init();
+  
+      //ajx 
+      
+  </script>
 {% endblock %}
