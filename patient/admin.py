@@ -18,7 +18,7 @@ from django.contrib.auth.models import User
 #     get_groups.short_description = 'Groups'
 
 class UserAdminWithGroup(UserAdmin):
-    def get_groups(self, obj):
+    def group_name(self, obj):
         queryset = obj.groups.values_list('name',flat=True)
         groups = []
         for group in queryset:
@@ -26,7 +26,7 @@ class UserAdminWithGroup(UserAdmin):
         
         return ' '.join(groups)
 
-    list_display = UserAdmin.list_display + ('get_groups',)
+    list_display = UserAdmin.list_display + ('group_name',)
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdminWithGroup)
