@@ -11,14 +11,14 @@
         <!--page title-->
          <div class="page-title mb-4 d-flex align-items-center">
             <div class="mr-auto">
-                <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES PATIENTS</h4>
+                <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">LIST DES CONSULTATIONS</h4>
                 <nav aria-label="breadcrumb" class="d-inline-block ">
                     <ol class="breadcrumb p-0">
                         <li class="breadcrumb-item"><a href="{% url 'patient:home' %}">Accueil</a></li>
                         {% if request.user.groups.name == "medecins" %}
-                        <li class="breadcrumb-item"><a href="{% url 'patient:patientform'%}">Ajouter Un Patient </a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'patient:patientform'%}">Ajouter Un Consultation </a></li>
                         {% endif %}
-                        <li class="breadcrumb-item active" aria-current="page">List Des Patients</li>
+                        <li class="breadcrumb-item active" aria-current="page">List Des Consultations</li>
                     </ol>
                 </nav>
             </div> 
@@ -29,7 +29,7 @@
                   <div class="card card-shadow mb-4 ">
                         <div class="card-header border-0">
                             <div class="custom-title-wrap bar-warning">
-                                <div class="custom-title">LIST DES PATIENTS </div>
+                                <div class="custom-title">LIST DES CONSULTATIONS </div>
                                 <div class=" widget-action-link">
                                   {% if request.user.groups.all.0.name == 'secretaires' or request.user.groups.all.0.name == 'admin' %}
 
@@ -39,8 +39,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right vl-dropdown">
                                             
-                                            <a class="dropdown-item" href="{% url 'patient:home' %}"> Accueil</a>
-                                            <a class="dropdown-item" href="{% url 'patient:listPatient'%}"> List Des Factures</a>
+                                            <a class="dropdown-item" href="{% url 'patient:home' %}"> Accueil </a>
+                                            <a class="dropdown-item" href="{% url 'patient:listConsultation'%}"> List Des Consultations </a>
                                         </div>
                                     </div>
                                     {%endif%}
@@ -56,38 +56,26 @@
                                 <thead>
 
                                     <tr>
-                                        <th scope="col">Secreteur </th>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Prenom </th>
-                                        <th scope="col">Sexe</th>
-                                        <th scope="col">dateNaissance</th>
-                                        <th scope="col">lieuNaissance</th>
-                                        <th scope="col">lieuResidance </th>
-                                        <th scope="col">Telephone 1</th>
-                                        <th scope="col">Telephone 2</th>
-                                        <th scope="col">Assurance </th>
+                                        <th scope="col">medecin </th>
+                                        <th scope="col">patient</th>
+                                        <th scope="col">dateConsultation </th>
+                                        <th scope="col">resultatConsultation</th>
                                         <th scope="col" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                             
                                 <tbody>
-                                    {% for patient in listPatient %}
+                                    {% for Consultation in listConsultation %}
                                     <tr>
-                                        <td scope="row"> {{patient.secretaire}} </td>
-                                        <td scope="row">{{patient.nom}}</td>
-                                        <td scope="row">{{patient.prenom}}</td>
-                                        <td scope="row">{{patient.sexe}}</td>
-                                        <td scope="row">{{patient.dateNaissance}}</td>
-                                        <td scope="row">{{patient.lieuNaissance}} </td>
-                                        <td scope="row">{{patient.lieuResidance}}</td>
-                                        <td scope="row">{{patient.NumTel1}}</td>
-                                        <td scope="row">{{patient.NumTel2}} </td>
-                                        <td scope="row">{{patient.Assurance}}</td>
+                                        <td scope="row"> {{Consultation.medecin}} </td>
+                                        <td scope="row">{{Consultation.patient}}</td>
+                                        <td scope="row">{{Consultation.dateConsultation}}</td>
+                                        <td scope="row">{{Consultation.resultatConsultation}}</td>
                                         <th>
-                                            <a href="imprimer_facture/{{patient.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
+                                            <a href="imprimer_facture/{{Consultation.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
                                         </th>
                                         <th>
-                                            <a href="delete_facture/{{patient.id}}" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
+                                            <a href="delete_facture/{{Consultation.id}}" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
                                         </th>
                                     </tr>
                                     {%endfor%}

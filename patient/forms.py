@@ -16,3 +16,20 @@ class NewPatient(forms.ModelForm):
         widgets={
             "dateNaissance": DateInput()
         }
+
+class NewConsultation(forms.ModelForm):
+    class Meta:
+        model = Consultation
+        fields ='__all__' 
+        exclude=['medecin']
+        widgets={
+            "dateConsultation": DateInput()
+        }
+
+class NewRendevous(forms.ModelForm):
+    class Meta:
+        model = Rendevous
+        fields ='__all__' 
+        widgets={
+            "dateRendevou": DateInput()
+        }

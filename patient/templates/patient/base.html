@@ -109,22 +109,23 @@
           {%endif%}
           <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-            {% if request.user.is_superuser and request.user.is_staff %}
+            {% if request.user.groups.all.0.name == "medecins" %}
               <!-- <li><a href="{%url 'image:images' %}"> Liste des Images</a></li> -->
               <!-- <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li> -->
               <!-- <li><a href="{%url 'patient:patientform' %}">Ajouter des Patients </a></li> -->
               <li><a href="{%url 'accounts:signup' %}">Ajouter des utilisateur </a></li>
-              <li><a href="#">Faire une Consultation </a></li>
+              <li><a href="{%url 'patient:consultation' %}">Faire une Consultation </a></li>
               <li><a href="#">Analyser une image </a></li>
               <li><a href="#">Rediger un Rapport Vocal </a></li>
               <li><a href="{%url 'accounts:profile' %}">Profile</a></li>
               <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
-            {% elif request.user.is_superuser == False and request.user.is_staff %}
+            {% elif request.user.groups.all.0.name == "techniciens" %}
               <li><a href="{%url 'image:imageform' %}">Faire une Scanaire </a></li>
               <li><a href="{%url 'accounts:profile' %}">Profile </a></li>
               <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
-            {% elif request.user.is_authenticated %}
+            {% elif request.user.groups.all.0.name == "secretaires" %}
               <li><a href="#">Transformer Vocal en Rapport Numérique </a></li>
+              <li><a href="{%url 'patient:rendevous' %}"> Reserver Pour un Rendevous</a></li>
               <li><a href="{%url 'patient:patientform' %}">Ajouter des Patients </a></li>
               <li><a href="{%url 'accounts:profile' %}">Profile</a></li>
               <li><a href="{%url 'accounts:logout' %}">Déconnecter</a></li>
@@ -140,25 +141,28 @@
 
           <li class="dropdown"><a href="#"><span>Les Listes </span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-            {% if request.user.is_superuser and request.user.is_staff %}
+            {% if request.user.groups.all.0.name == "medecins" %}
               <li><a href="{%url 'accounts:table_users' %}"> Liste des utilisateur</a></li>
               <li><a href="#"> Liste des Rapport Vocal</a></li>
-              <li><a href="#"> Liste des Consultation </a></li>
+              <li><a href="{%url 'patient:listConsultation' %}"> Liste des Consultation </a></li>
+              <li><a href="{%url 'patient:listRendevous' %}"> List des Rendevous pour consultation</a></li>
               <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
               <li><a href="#"> Liste des Rapport Numérique </a></li>
               <li><a href="{%url 'patient:listPatient' %}"> Liste des Patients</a></li>
-            {% elif request.user.is_superuser == False and request.user.is_staff %}
+            {% elif request.user.groups.all.0.name == "techniciens" %}
               <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
               <li><a href="{%url 'patient:listPatient' %}">  Liste des Patients</a></li>
-            {% elif request.user.is_authenticated %}
+              <li><a href="{%url 'patient:listRendevous' %}"> List des Rendevous pour consultation</a></li>
+            {% elif request.user.groups.all.0.name == "secretaires" %}
               <li><a href="#"> Liste des Rapport Vocal</a></li>
-              <li><a href="#"> Liste des Consultation </a></li>
+              <li><a href="{%url 'patient:listConsultation' %}"> Liste des Consultation </a></li>
               <li><a href="{%url 'image:images' %}"> Liste des Images</a></li>
               <li><a href="#"> Liste des Rapport Numérique </a></li>
               <li><a href="{%url 'patient:listPatient' %}"> Liste des Patients</a></li>
+              <li><a href="{%url 'patient:listRendevous' %}"> List des Rendevous pour consultation</a></li>
           
             {%else%}
-            
+            <li><a class="nav-link scrollto" href="#">pas des drois </a></li>
             {%endif%}
               
               

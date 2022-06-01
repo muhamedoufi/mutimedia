@@ -15,4 +15,25 @@ class Patient(models.Model):
     Assurance = models.CharField(max_length=45)
 
     def __str__(self):
-        return f"le Patient  {self.nom}/{self.prenom} est bien Ajouteé"
+        return f"{self.nom}/{self.prenom}"
+
+
+class Rendevous(models.Model):
+    medecin_technicien = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
+    patient =  models.ForeignKey(Patient,blank=True,null=True,on_delete=models.CASCADE)
+    dateRendevou = models.DateField(null=True)
+    Status_Patient = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return f"un Rendevous pour le Patient  {self.patient.nom} est Bien planifié"
+
+class Consultation(models.Model):
+    rendevous = models.ForeignKey(Rendevous,blank=True,null=True,on_delete=models.CASCADE)
+    medecin = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
+    patient =  models.ForeignKey(Patient,blank=True,null=True,on_delete=models.CASCADE)
+    dateConsultation = models.DateField(null=True)
+    resultatConsultation = models.TextField(max_length=1000)
+
+    def __str__(self):
+        return f"la consultation de Patient  {self.patient.nom}/{self.patient.prenom}"
+
