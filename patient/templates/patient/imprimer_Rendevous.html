@@ -1,0 +1,72 @@
+{% extends 'patient/base.html'%}
+{% block content %}}
+
+{% load crispy_forms_tags %}
+
+<br><br><br><br><br><br>
+
+<div class="container">
+
+
+<div class="row">
+                <div class="col-xl-12">
+                      <div class="card card-shadow mb-4 ">
+                            <div class="card-header border-0">
+                                <div class="custom-title-wrap bar-warning">
+                                 <div class="custom-title">Le Rendez-vous </div>
+                                </div>
+                            </div>
+                        </div>
+{{facture.User}}
+  <table id="data_table" class="table table-bordered table-striped" cellspacing="0">
+
+    <thead>
+
+    <tr rowspan="2" colspan="2">
+        {% if request.user.groups.all.0.name == "medecins" %}
+        <th scope="col"> medecin </th>
+        {% elif request.user.groups.all.0.name == "techniciens" %}
+        <th scope="col"> technicien </th>
+        {% else %}
+        <th scope="col"> medecin ou technicien </th>
+        {% endif %}
+        <th scope="col"> patient </th>
+        <th scope="col"> dateRendevou </th>
+        <th scope="col"> Status du Patient </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row"> {{rendevous.medecin_technicien}} </td>
+            <td scope="row">{{rendevous.patient}}</td>
+            <td scope="row">{{rendevous.dateRendevou}}</td>
+            <td scope="row">{{rendevous.Status_Patient}}</td>
+        </tr>
+      <tr>
+     </tr>
+     <tr>
+      <td scope="row" colspan="6"></td>
+   </tr>
+    </tbody>
+
+</table>
+      </div>
+     <div class="modal-footer">
+   <a href="javascript:window.print()"  >
+       <button type="button" class="btn btn-default p-2 " data-dismiss="modal">
+          IMPRIMER
+        </button>
+        </a>
+        </div>
+
+
+        <!--   endform         -->
+       </div>
+    </div>
+   </div>
+  </div>
+</div>
+          <!--  </div>-->
+   
+          </div>
+          {% endblock content %}

@@ -126,3 +126,8 @@ def listRendevous(request):
         context = {}
     return render(request,'patient/listRendevous.html',context)
 
+def imprimer_Rendevous(request, id):
+    rendevous = Rendevous.objects.get(id=id)
+   
+    return render(request,'patient/imprimer_Rendevous.html',{'rendevous':  rendevous})
+

@@ -181,6 +181,14 @@
   {% block content%}
   {% endblock content%}
 
+  <script>
+    function print() {
+        var frame = document.getElementById('frame');
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+    }
+  </script>
+
 
   <!-- Vendor JS Files -->
   <script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>

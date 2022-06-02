@@ -66,7 +66,7 @@
                                         <th scope="col"> patient </th>
                                         <th scope="col"> dateRendevou </th>
                                         <th scope="col"> Status du Patient </th>
-                                        <th scope="col" colspan="2"> Action </th>
+                                        <th scope="col"> IMPRIMER </th>
                                     </tr>
                                 </thead>
                             
@@ -78,10 +78,7 @@
                                         <td scope="row">{{Rendevous.dateRendevou}}</td>
                                         <td scope="row">{{Rendevous.Status_Patient}}</td>
                                         <th>
-                                            <a href="imprimer_rendevou/{{Rendevous.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
-                                        </th>
-                                        <th>
-                                            <a href="delete_rendevou/{{Rendevous.id}}" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
+                                            <a href="{% url 'patient:imprimer_Rendevous' Rendevous.id %}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
                                         </th>
                                     </tr>
                                     {%endfor%}

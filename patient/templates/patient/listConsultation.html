@@ -60,7 +60,6 @@
                                         <th scope="col">patient</th>
                                         <th scope="col">dateConsultation </th>
                                         <th scope="col">resultatConsultation</th>
-                                        <th scope="col" colspan="2">Action</th>
                                     </tr>
                                 </thead>
                             
@@ -71,12 +70,6 @@
                                         <td scope="row">{{Consultation.patient}}</td>
                                         <td scope="row">{{Consultation.dateConsultation}}</td>
                                         <td scope="row">{{Consultation.resultatConsultation}}</td>
-                                        <th>
-                                            <a href="imprimer_facture/{{Consultation.id}}" class="btn btn-primary mb-2 btn-success" >IMPRIMER</a>
-                                        </th>
-                                        <th>
-                                            <a href="delete_facture/{{Consultation.id}}" class="btn btn-primary mb-2 btn-success" >SUPPRIMER</a>
-                                        </th>
                                     </tr>
                                     {%endfor%}
                                 </tbody>
