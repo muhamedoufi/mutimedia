@@ -10,9 +10,10 @@ import numpy as np
 class Image(models.Model):
     img = models.ImageField(upload_to='image/images/',blank=True, null=True)
     type = models.CharField(max_length=30)
-    description = models.CharField(max_length=250)
     technicien = models.ForeignKey(User,on_delete=models.CASCADE)
     patient = models.ForeignKey(Patient,on_delete=models.CASCADE)
+    description = models.TextField()
+
 
     def __str__(self):
         return f"l'image du Patient  {self.patient} est bien Ajouteé"

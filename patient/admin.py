@@ -36,7 +36,7 @@ admin.site.site_header = "Image medical Admin Panel"
 admin.site.site_title = "Image medical Admin Panel"
 
 class  PatientAdmin(admin.ModelAdmin):
-    fields = ['nom','prenom','sexe','dateNaissance','lieuNaissance','lieuResidance','NumTel1','NumTel2','Assurance']
+    fields = ['secretaire','nom','prenom','sexe','dateNaissance','lieuNaissance','lieuResidance','NumTel1','NumTel2','Assurance']
     list_display = ['secretaire','nom','prenom','sexe','dateNaissance','lieuNaissance','lieuResidance','NumTel1','NumTel2','Assurance']
     list_display_links = ['secretaire']
     list_editable = ['nom','prenom','sexe','dateNaissance','lieuNaissance','lieuResidance','NumTel1','NumTel2','Assurance']

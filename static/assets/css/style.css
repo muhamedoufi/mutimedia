@@ -20,7 +20,7 @@ body {
   width: 100%;
   max-width: 380px;
   padding: 80px 40px 40px;
-  background: rgba(0,0,0,0.7);
+  background: #3fbbc0;
   border-radius: 10px;
   color: #fff;
   box-shadow: 0 15px 25px rgba(0,0,0,0.5);
@@ -31,7 +31,6 @@ body {
   top: 0;
   left: 0;
   width: 50%;
-  height: 100%;
   background: rgba(255,255,255, 0.08);
   transform: skewX(-26deg);
   transform-origin: bottom left;

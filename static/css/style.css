@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #3fbbc0;
+  border: 6px solid hsl(182, 51%, 50%);
   border-top-color: #ecf8f9;
   border-radius: 50%;
   width: 60px;
