@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from image.models import Image
 from django.contrib import messages
 
-# Create your views here.
+# Create your views here......
 
 def imageform(request):
     if request.method == 'POST':
