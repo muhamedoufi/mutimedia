@@ -37,3 +37,26 @@ def showImages(request):
 
     }
     return render(request, 'image/images.html',context)
+
+
+def updateImage(request,pk):
+    Images=Image.objects.get(id=pk)
+    form=NewImage(instance=Images)
+    if request.method=="POST":
+        #   print(request.POST)
+        form=NewImage(request.POST,request.FILES,instance=Images)
+        if form.is_valid():
+            form.save()
+            return(redirect('/images'))
+    context={'image_Form':form}
+    return render(request, 'image/imageform.html',context)
+
+
+def deleteImage(request,pk):
+    Images=Image.objects.get(id=pk)
+    if request.method=="POST":
+        Images.delete()
+        return(redirect('/images'))
+        
+    context={'Imageform':Images}
+    return render(request, 'image/deleteImage.html',context)
