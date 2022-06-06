@@ -6,7 +6,7 @@ class Patient(models.Model):
     secretaire = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
     nom = models.CharField(max_length=45)
     prenom =models.CharField(max_length=45)
-    sexe = models.CharField(max_length=10)
+    sexe = models.CharField(max_length=8,choices=(('Male', 'Male'),('Femelle','Femelle'),))
     dateNaissance = models.DateField(null=True)
     lieuNaissance = models.CharField(max_length=100)
     lieuResidance = models.CharField(max_length=100)
